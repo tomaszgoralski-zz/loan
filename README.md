@@ -1,0 +1,1 @@
+run from root directory -->  mvn clean package && java -jar web/target/web-1.0.jar

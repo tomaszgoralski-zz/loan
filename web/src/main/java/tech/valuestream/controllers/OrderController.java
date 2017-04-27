@@ -8,6 +8,8 @@ import org.springframework.web.bind.annotation.RestController;
 import tech.valuestream.dtos.OrderDTO;
 import tech.valuestream.facades.OrderFacade;
 
+import javax.servlet.http.HttpServletRequest;
+
 @RestController
 public class OrderController {
 
@@ -15,15 +17,8 @@ public class OrderController {
     private OrderFacade orderFacade;
 
     @RequestMapping(value = "/order", method = RequestMethod.POST)
-    public OrderDTO index(@RequestBody OrderDTO order) {
-        System.out.println(order.getAmount());
-        System.out.println(order.getEmail());
-        System.out.println(order.getWhenDate());
-
-        orderFacade.handle(order);
-
-
-        return order;
+    public OrderDTO index(@RequestBody OrderDTO order,HttpServletRequest request) {
+        return orderFacade.handle(order, request);
     }
 
 }

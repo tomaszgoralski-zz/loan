@@ -2,27 +2,33 @@ package tech.valuestream.dtos;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
+import java.time.LocalDateTime;
+
 public class OrderDTO {
 
-    private String email;
-    private String amount;
-    private String whenDate;
+    private String ip;
+    private Double amount;
+    private LocalDateTime whenDate;
     private String message;
 
-    public String getWhenDate() {
+    public LocalDateTime getWhenDate() {
         return whenDate;
     }
 
-    public String getEmail() {
-        return email;
+    public String getIp() {
+        return ip;
     }
 
-    public String getAmount() {
+    public void setIp(String ip) {
+        this.ip = ip;
+    }
+
+    public Double getAmount() {
         return amount;
     }
 
-    public void getMessage(String message){
-        this.message = message;
+    public String getMessage(){
+       return this.message;
     }
 
     public void setMessage(String message){

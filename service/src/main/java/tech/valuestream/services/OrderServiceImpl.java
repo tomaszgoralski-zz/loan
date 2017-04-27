@@ -1,10 +1,15 @@
 package tech.valuestream.services;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import tech.valuestream.models.Order;
+import tech.valuestream.repositories.OrderRepository;
 
 @Component
 public class OrderServiceImpl implements OrderService {
+
+    @Autowired
+    private OrderRepository orderRepository;
 
     @Override
     public void checkRisk(Order o) {
@@ -16,18 +21,19 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
-    public void create(Order o) {
-
+    public Order create(Order o) {
+        o.resolveStatus();
+        return orderRepository.save(o);
     }
 
     @Override
     public boolean isInAcceptableHours(Order o) {
-        return o.getWhenDate().getHour() > 0 && o.getWhenDate().getHour() < 6;
+        return o.getWhenDate().getHour() > 6;
     }
 
     @Override
     public boolean hasSafeIp(Order o) {
-        return false;
+        return orderRepository.countOrdersFromIp(o.getIp()) < 3;
     }
 
     @Override
