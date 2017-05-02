@@ -37,7 +37,7 @@ public class OrderServiceImplTest {
         o.setAmount(1000.0);
         o.setWhenDate(LocalDateTime.now().withHour(10));
         o.setIp(ip);
-        when(orderRepository.countOrdersFromIp(ip)).thenReturn(0);
+        when(orderRepository.countByIp(ip)).thenReturn(0);
         // when
         orderService.checkRisk(o);
         // then
@@ -53,7 +53,7 @@ public class OrderServiceImplTest {
         o.setAmount(1000.0);
         o.setWhenDate(LocalDateTime.now().withHour(10));
         o.setIp(ip);
-        when(orderRepository.countOrdersFromIp(ip)).thenReturn(3);
+        when(orderRepository.countByIp(ip)).thenReturn(3);
         // when
         orderService.checkRisk(o);
         // then
@@ -101,7 +101,7 @@ public class OrderServiceImplTest {
         String ip = "192.168.0.0";
         Order o = new Order();
         o.setIp(ip);
-        when(orderRepository.countOrdersFromIp(ip)).thenReturn(3);
+        when(orderRepository.countByIp(ip)).thenReturn(3);
         // when
         boolean hasSafeIp = orderService.hasSafeIp(o);
         // then
@@ -114,7 +114,7 @@ public class OrderServiceImplTest {
         String ip = "192.168.0.0";
         Order o = new Order();
         o.setIp(ip);
-        when(orderRepository.countOrdersFromIp(ip)).thenReturn(2);
+        when(orderRepository.countByIp(ip)).thenReturn(2);
         // when
         boolean hasSafeIp = orderService.hasSafeIp(o);
         // then

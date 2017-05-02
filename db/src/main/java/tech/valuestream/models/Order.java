@@ -10,6 +10,15 @@ import java.time.LocalDateTime;
 @Table(name = "SUBMISSION")
 public class Order {
 
+    public Order(Double amount, LocalDateTime when, String ip) {
+        this.amount = amount;
+        this.when = when;
+        this.ip = ip;
+    }
+
+    public Order() {
+    }
+
     public final static String LOW_RISK = "low";
     public final static String HIGH_RISK = "high";
     public final static String ACCEPTED = "accepted";
@@ -65,8 +74,8 @@ public class Order {
         this.risk = risk;
     }
 
-    public boolean isLowRisk(){
-       return LOW_RISK.equals(this.risk);
+    public boolean isLowRisk() {
+        return LOW_RISK.equals(this.risk);
     }
 
     public void resolveStatus() {
@@ -78,7 +87,7 @@ public class Order {
     }
 
     @Override
-    public String toString(){
-        return "Order: Id-"+getId()+", amount-"+getAmount()+", when-"+getWhenDate()+", risk-"+getRisk()+", status-"+getStatus();
+    public String toString() {
+        return "Order: Id-" + getId() + ", amount-" + getAmount() + ", when-" + getWhenDate() + ", risk-" + getRisk() + ", status-" + getStatus();
     }
 }

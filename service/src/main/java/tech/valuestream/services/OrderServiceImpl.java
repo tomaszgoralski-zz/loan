@@ -33,7 +33,7 @@ public class OrderServiceImpl implements OrderService {
 
     @Override
     public boolean hasSafeIp(Order o) {
-        return orderRepository.countOrdersFromIp(o.getIp()) < 3;
+        return orderRepository.countByIp(o.getIp()) < 3;
     }
 
     @Override
